@@ -1,0 +1,6 @@
+*.suo
+.vs/
+[Dd]ebug/
+[Bb]in/
+[Oo]bj/
+
