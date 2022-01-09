@@ -3,6 +3,7 @@ using TaskList.Application;
 using TaskList.Application.Common.Mappings;
 using TaskList.Application.Interfaces;
 using TaskList.Persistence;
+using TaskList.WebApi.Middleware;
 
 namespace TaskList.WebApi
 {
@@ -42,6 +43,7 @@ namespace TaskList.WebApi
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCustomExceptionHandler();
             app.UseRouting();
             app.UseHttpsRedirection();
             app.UseCors("AllowAll");
