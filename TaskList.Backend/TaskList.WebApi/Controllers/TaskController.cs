@@ -1,9 +1,6 @@
 ﻿using AutoMapper;
-using System;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
 using TaskList.Application.Tasks.Queries.GetTaskList;
 using TaskList.Application.Tasks.Queries.GetTaskDetails;
 using TaskList.Application.Tasks.Commands.CreateTask;

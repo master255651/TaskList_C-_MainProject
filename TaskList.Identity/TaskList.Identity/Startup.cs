@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.EntityFrameworkCore;
 using TaskList.Identity.Data;
 using TaskList.Identity.Models;
@@ -14,7 +15,7 @@ namespace TaskList.Identity
 
         public void ConfigureServices(IServiceCollection services)
         {
-            var connectionString = AppConfiguration.GetValue<string>("DbConnection");
+            var connectionString = AppConfiguration.GetConnectionString("DefaultDatabase");
 
             services.AddDbContext<AuthDbContext>(options =>
             {
@@ -56,14 +57,17 @@ namespace TaskList.Identity
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(env.ContentRootPath, "Styles")),
+                RequestPath = "/styles"
+            });
             app.UseRouting();
             app.UseIdentityServer();
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapDefaultControllerRoute();
             });
         }
     }
