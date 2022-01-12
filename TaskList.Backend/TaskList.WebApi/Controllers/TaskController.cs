@@ -86,12 +86,12 @@ namespace TaskList.WebApi.Controllers
         [Authorize]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<ActionResult<Guid>> Create([FromBody] CreateTaskDto createNoteDto)
+        public async Task<ActionResult<Guid>> Create([FromBody] CreateTaskDto createTaskDto)
         {
-            var command = _mapper.Map<CreateTaskCommand>(createNoteDto);
+            var command = _mapper.Map<CreateTaskCommand>(createTaskDto);
             command.UserId = UserId;
-            var noteId = await Mediator.Send(command);
-            return Ok(noteId);
+            var taskId = await Mediator.Send(command);
+            return Ok(taskId);
         }
 
         /// <summary>
@@ -112,9 +112,9 @@ namespace TaskList.WebApi.Controllers
         [Authorize]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<IActionResult> Update([FromBody] UpdateTaskDto updateNoteDto)
+        public async Task<IActionResult> Update([FromBody] UpdateTaskDto updateTaskDto)
         {
-            var command = _mapper.Map<UpdateTaskCommand>(updateNoteDto);
+            var command = _mapper.Map<UpdateTaskCommand>(updateTaskDto);
             command.UserId = UserId;
             await Mediator.Send(command);
             return NoContent();
