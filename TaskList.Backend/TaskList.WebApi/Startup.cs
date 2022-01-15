@@ -47,7 +47,7 @@ namespace TaskList.WebApi
             })
                 .AddJwtBearer("Bearer", options =>
                 {
-                    options.Authority = "https://localhost:44382/";
+                    options.Authority = "https://localhost:7128/";
                     options.Audience = "TaskListWebAPI";
                     options.RequireHttpsMetadata = false;
                 });

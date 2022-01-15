@@ -7,6 +7,11 @@ namespace TaskList.WebApi.Models
 {
     public class CreateTaskDto : IMapWith<CreateTaskCommand>
     {
+        public CreateTaskDto()
+        {
+            Details = "";
+        }
+
         [Required]
         public string Title { get; set; }
         public string Details { get; set; }
