@@ -10,7 +10,10 @@ using TaskList.WebApi.Models;
 
 namespace TaskList.WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
+    [ApiVersion("2.0")]
+    [Produces("application/json")]
+    [Route("api/{version:apiVersion}/[controller]")]
     public class TaskController : BaseController
     {
         private readonly IMapper _mapper;
@@ -46,7 +49,7 @@ namespace TaskList.WebApi.Controllers
         /// </summary>
         /// <remarks>
         /// Sample request:
-        /// GET /task/D34D349E-43B8-429E-BCA4-793C932FD580
+        /// GET /task/436FEBF3-93E7-4E12-BA1A-A42B1967FCBE
         /// </remarks>
         /// <param name="id">Task id (guid)</param>
         /// <returns>Returns TaskDetailsVm</returns>
@@ -125,7 +128,7 @@ namespace TaskList.WebApi.Controllers
         /// </summary>
         /// <remarks>
         /// Sample request:
-        /// DELETE /task/88DEB432-062F-43DE-8DCD-8B6EF79073D3
+        /// DELETE /task/436FEBF3-93E7-4E12-BA1A-A42B1967FCBE
         /// </remarks>
         /// <param name="id">Id of the task (guid)</param>
         /// <returns>Returns NoContent</returns>
