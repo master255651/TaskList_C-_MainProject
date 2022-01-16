@@ -8,6 +8,7 @@ using TaskList.Application.Interfaces;
 using TaskList.Persistence;
 using TaskList.WebApi.Middleware;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using TaskList.WebApi.Services;
 
 namespace TaskList.WebApi
 {
@@ -58,6 +59,9 @@ namespace TaskList.WebApi
                     ConfigureSwaggerOptions>();
             services.AddSwaggerGen();
             services.AddApiVersioning();
+
+            services.AddSingleton<ICurrentUserService, CurrentUserService>();
+            services.AddHttpContextAccessor();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
